@@ -26,6 +26,7 @@ public class PublishService {
      */
     public User publish(final User user) {
         this.jmsTemplate.convertAndSend(this.queue, user);
+        log.info("Just published the user data");
         return user;
     }
 
@@ -37,6 +38,7 @@ public class PublishService {
      */
     public User publishWithoutQueue(final User user) {
         this.jmsTemplate.convertAndSend("publishing user", user);
+        log.info("Just published the user data");
         return user;
     }
 }
